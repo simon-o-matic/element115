@@ -20,7 +20,7 @@ const masses = [];
 let Sun1 = {
     x: 155,
     y: 380,
-    m: 358,
+    m: 320,
 };
 
 let Sun2 = {
