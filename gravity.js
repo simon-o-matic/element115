@@ -10,7 +10,7 @@ const canvasTop = canvas.offsetTop + canvas.clientTop;
 const G = 5;
 const MAX_VEL = 9;
 const MAX_ATTRACTION = 0.5;
-const INITIAL_VEL = 4;
+const INITIAL_VEL = 5;
 const MASS = 1500;
 const MASS_WIDTH = 10;
 
@@ -25,13 +25,13 @@ let Sun1 = {
 
 let Sun2 = {
     x: 540,
-    y: 200,
+    y: 80,
     m: 115,
 };
 
 let Sun3 = {
     x: 840,
-    y: 400,
+    y: 320,
     m: 215,
 };
 
@@ -41,10 +41,17 @@ let Sun4 = {
     m: 80,
 };
 
+let Sun5 = {
+    x: 500,
+    y: 520,
+    m: 200,
+};
+
 suns.push(Sun1);
 suns.push(Sun2);
 suns.push(Sun3);
 suns.push(Sun4);
+suns.push(Sun5);
 
 canvas.addEventListener("click", event => {
     let x = event.pageX - canvasLeft;
