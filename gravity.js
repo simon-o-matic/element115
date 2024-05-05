@@ -9,7 +9,8 @@ const canvasTop = canvas.offsetTop + canvas.clientTop;
 
 const G = 5;
 const MAX_VEL = 9;
-const INITIAL_VEL = 6;
+const MAX_ATTRACTION = 0.5;
+const INITIAL_VEL = 4;
 const MASS = 1500;
 const MASS_WIDTH = 10;
 
@@ -78,7 +79,7 @@ const updateVelocities = m => {
     // Work out the attraction of every sun on this mass
     suns.forEach(s => {
         let distance = getDistance(s.x, s.y, m.x, m.y);
-        console.log("distance", distance);
+
         if (distance < 15) distance = 15;
         if (distance > 2000) distance = 2000;
 
@@ -87,6 +88,12 @@ const updateVelocities = m => {
         var direction = Math.atan2(s.x - m.x, s.y - m.y);
         var attractionX = Math.sin(direction) * attraction;
         var attractionY = Math.cos(direction) * attraction;
+
+        // limit the attractive force (to stop very tight orbits)
+        if (attractionX > MAX_ATTRACTION) attractionX = MAX_ATTRACTION;
+        if (attractionX < -MAX_ATTRACTION) attractionX = -MAX_ATTRACTION;
+        if (attractionY > MAX_ATTRACTION) attractionY = MAX_ATTRACTION;
+        if (attractionY < -MAX_ATTRACTION) attractionY = -MAX_ATTRACTION;
 
         if (m.anti_gravity) {
             m.vx -= attractionX;
